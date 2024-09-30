@@ -7,6 +7,7 @@ function AllBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate(); 
+
   const getAllBlogs = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "Blogs"));
@@ -17,9 +18,10 @@ function AllBlogs() {
       });
 
       setBlogs(blogsData);
-      setLoading(false);
     } catch (error) {
       console.error("Error fetching blogs:", error);
+      alert("Error fetching blogs. Please try again."); // User feedback
+    } finally {
       setLoading(false);
     }
   };
@@ -31,7 +33,7 @@ function AllBlogs() {
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       {loading ? (
-        <div className="absolute top-0 flex justify-center items-center w-full h-full">
+        <div className="flex justify-center items-center w-full h-full">
           <p className="text-xl font-semibold text-gray-600">Loading...</p>
         </div>
       ) : (
@@ -48,7 +50,7 @@ function AllBlogs() {
                   <p className="text-sm text-center font-medium text-gray-500">By {item.userName}</p>
                   <button
                     onClick={() => navigate(`/userblogs/${item.userName}`)} 
-                    className="mt-4 ml-16 bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300"
+                    className="mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 w-full" // Full width
                   >
                     See All From This User
                   </button>
