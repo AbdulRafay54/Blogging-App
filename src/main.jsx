@@ -5,7 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from  "./auth/Login.jsx";
 import Signup from "./auth/Signup.jsx";
-import Layout from "../layout.jsx";
+import Layout from "../Layout.jsx";
 import Allblog from "./components/Allblog.jsx";
 import Addblog from "./components/Addblog.jsx";
 import UserBlogs from "./components/userblogs.jsx";
