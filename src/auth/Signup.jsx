@@ -46,14 +46,14 @@ const Signup = () => {
         <h2 className="text-2xl font-bold text-center text-white">Sign Up</h2> 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-300">
+            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
               Full Name
             </label>
             <input
               type="text"
               {...register("name", { required: "Full name is required" })}
               placeholder="Enter your full name"
-              className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-600 border border-gray-500 rounded-lg focus:outline-none" // Background updated
+              className="w-full px-4 py-2 mt-2 text-white bg-gray-600 border border-gray-500 rounded-lg focus:outline-none" // Text updated to white
             />
             {errors.name && (
               <span className="text-red-500 text-sm">
@@ -62,14 +62,14 @@ const Signup = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300"> 
+            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
               Email
             </label>
             <input
               type="email"
               {...register("email", { required: "Email is required" })}
               placeholder="Enter your email"
-              className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-600 border border-gray-500 rounded-lg focus:outline-none" // Background updated
+              className="w-full px-4 py-2 mt-2 text-white bg-gray-600 border border-gray-500 rounded-lg focus:outline-none" // Text updated to white
             />
             {errors.email && (
               <span className="text-red-500 text-sm">
@@ -78,14 +78,14 @@ const Signup = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-300"> 
+            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
               Password
             </label>
             <input
               type="password"
               {...register("password", { required: "Password is required" })}
               placeholder="Enter your password"
-              className="w-full px-4 py-2 mt-2 text-gray-700 bg-gray-600 border border-gray-500 rounded-lg focus:outline-none" // Background updated
+              className="w-full px-4 py-2 mt-2 text-white bg-gray-600 border border-gray-500 rounded-lg focus:outline-none" // Text updated to white
             />
             {errors.password && (
               <span className="text-red-500 text-sm">

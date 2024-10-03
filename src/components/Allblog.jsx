@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom"; 
 import { db } from "../Firebase/firebasemethods";
 import { collection, getDocs } from "firebase/firestore";
+import { BallTriangle } from "react-loader-spinner";
 
 function AllBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -31,11 +32,20 @@ function AllBlogs() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen bg-gray-900 p-8"> {/* Dark background to match navbar */}
       {loading ? (
-        <div className="flex justify-center items-center w-full h-full">
-          <p className="text-xl font-semibold text-gray-600">Loading...</p>
-        </div>
+         <div className="flex justify-center items-center w-full h-full mt-72">
+         <BallTriangle
+           height={100}
+           width={100}
+           radius={5}
+           color="#4fa94d"
+           ariaLabel="ball-triangle-loading"
+           wrapperStyle={{}}
+           wrapperClass=""
+           visible={true}
+         />
+       </div>
       ) : (
         <>
           {blogs.length > 0 ? (
@@ -43,14 +53,16 @@ function AllBlogs() {
               {blogs.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white shadow-lg rounded-lg p-6 transition-shadow duration-300 transform hover:scale-105"
+                  className="bg-gray-800 shadow-lg rounded-lg p-6 transition-shadow duration-300 transform hover:scale-105 flex flex-col justify-between" // Flex for layout
                 >
-                  <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">{item.title}</h2>
-                  <p className="text-gray-600 text-center mb-4">{item.description}</p>
-                  <p className="text-sm text-center font-medium text-gray-500">By {item.userName}</p>
+                  <div>
+                    <h2 className="text-2xl font-bold text-center text-teal-400 mb-2">{item.title}</h2> {/* Updated Title Color */}
+                    <p className="text-white font-semibold text-center mb-4">{item.description}</p>
+                    <p className="text-md text-center font-medium text-sky-400">By {item.userName}</p> {/* Updated User Name Color */}
+                  </div>
                   <button
                     onClick={() => navigate(`/userblogs/${item.userName}`)} 
-                    className="mt-4 bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition duration-300 w-full" // Full width
+                    className="mt-4 bg-gray-700 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-300 w-full" // Updated Button Color
                   >
                     See All From This User
                   </button>
