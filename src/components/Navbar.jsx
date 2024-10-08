@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { auth } from '../Firebase/firebasemethods';
-import { signOut } from 'firebase/auth';
-import { FaSignOutAlt, FaUser, FaHome, FaBlog } from 'react-icons/fa';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../Firebase/firebasemethods";
+import { signOut } from "firebase/auth";
+import { FaSignOutAlt, FaUser, FaHome, FaBlog, FaUserPlus, FaBars } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ const Navbar = () => {
     signOut(auth)
       .then(() => {
         alert("User signed out successfully");
-        navigate('/login'); 
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Sign out error", error);
@@ -32,29 +32,49 @@ const Navbar = () => {
           <Link to="/">Blogging App</Link>
         </div>
 
-        <button onClick={toggleMenu} className="md:hidden text-white focus:outline-none">
-          <FaUser className="w-6 h-6" />
+        <button
+          onClick={toggleMenu}
+          className="md:hidden text-white focus:outline-none"
+        >
+          <FaBars className="w-6 h-6" /> {/* Hamburger icon for mobile */}
         </button>
 
         <div className="hidden md:flex space-x-8 items-center text-lg">
-          <Link className="text-white hover:text-gray-300 transition duration-300" to="/">
+          <Link
+            className="text-white hover:text-gray-300 transition duration-300"
+            to="/"
+          >
             <FaHome className="inline-block mr-1" /> Home
           </Link>
           {!isLoggedIn ? (
             <>
-              <Link className="text-white hover:text-gray-300 transition duration-300" to="/login">
+              <Link
+                className="text-white hover:text-gray-300 transition duration-300"
+                to="/login"
+              >
                 <FaUser className="inline-block mr-1" /> Login
               </Link>
-              <Link className="text-white hover:text-gray-300 transition duration-300" to="/signup">
+              <Link
+                className="block text-white hover:text-gray-300 py-2 transition duration-300 flex items-center"
+                to="/signup"
+                onClick={toggleMenu}
+              >
+                <FaUserPlus className="mr-2" />
                 Signup
               </Link>
             </>
           ) : (
             <>
-              <Link className="text-white hover:text-gray-300 transition duration-300" to="/addblog">
+              <Link
+                className="text-white hover:text-gray-300 transition duration-300"
+                to="/addblog"
+              >
                 <FaBlog className="inline-block mr-1" /> Add Blog
               </Link>
-              <button onClick={signOutUser} className="text-white hover:text-gray-300 transition duration-300">
+              <button
+                onClick={signOutUser}
+                className="text-white hover:text-gray-300 transition duration-300"
+              >
                 <FaSignOutAlt className="inline-block mr-1" /> Sign Out
               </button>
             </>
@@ -62,25 +82,47 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'} bg-gray-700 p-4`}>
-        <Link className="block text-white hover:text-gray-300 py-2 transition duration-300" to="/" onClick={toggleMenu}>
+      <div
+        className={`md:hidden ${isOpen ? "block" : "hidden"} bg-gray-700 p-4`}
+      >
+        <Link
+          className="block text-white hover:text-gray-300 py-2 transition duration-300"
+          to="/"
+          onClick={toggleMenu}
+        >
           <FaHome className="inline-block mr-1" /> Home
         </Link>
         {!isLoggedIn ? (
           <>
-            <Link className="block text-white hover:text-gray-300 py-2 transition duration-300" to="/login" onClick={toggleMenu}>
+            <Link
+              className="block text-white hover:text-gray-300 py-2 transition duration-300"
+              to="/login"
+              onClick={toggleMenu}
+            >
               <FaUser className="inline-block mr-1" /> Login
             </Link>
-            <Link className="block text-white hover:text-gray-300 py-2 transition duration-300" to="/signup" onClick={toggleMenu}>
+            <Link
+              className="block text-white hover:text-gray-300 py-2 transition duration-300 flex items-center"
+              to="/signup"
+              onClick={toggleMenu}
+            >
+              <FaUserPlus className="mr-2" />
               Signup
             </Link>
           </>
         ) : (
           <>
-            <Link className="block text-white hover:text-gray-300 py-2 transition duration-300" to="/addblog" onClick={toggleMenu}>
+            <Link
+              className="block text-white hover:text-gray-300 py-2 transition duration-300"
+              to="/addblog"
+              onClick={toggleMenu}
+            >
               <FaBlog className="inline-block mr-1" /> Add Blog
             </Link>
-            <button className="block text-white hover:text-gray-300 py-2 transition duration-300" onClick={signOutUser}>
+            <button
+              className="block text-white hover:text-gray-300 py-2 transition duration-300"
+              onClick={signOutUser}
+            >
               <FaSignOutAlt className="inline-block mr-1" /> Sign Out
             </button>
           </>

@@ -53,8 +53,8 @@ function AllBlogs() {
               {blogs.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-gray-800 shadow-lg rounded-lg p-6 transition-shadow duration-300 transform hover:scale-105 flex flex-col justify-between" // Flex for layout
-                >
+                  className="bg-gray-800 shadow-lg rounded-lg p-6 transition-transform duration-500 ease-in-out transform hover:scale-105 flex flex-col justify-between"
+                  >
                   <div>
                     <h2 className="text-2xl font-bold text-center text-teal-400 mb-2">{item.title}</h2> {/* Updated Title Color */}
                     <p className="text-white font-semibold text-center mb-4">{item.description}</p>
