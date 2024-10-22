@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { auth, sendData } from "../Firebase/firebasemethods";
+import Swal from "sweetalert2";
 
 function Addblog() {
   const {
@@ -12,6 +13,7 @@ function Addblog() {
   } = useForm();
 
   const navigate = useNavigate();
+  
   const onsubmit = (data) => {
     console.log(data);
     const sendingData = {
@@ -22,10 +24,18 @@ function Addblog() {
     };
     console.log(sendingData);
 
-
     sendData(sendingData, "Blogs")
       .then(() => {
-        alert("Blog successfully added!");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Blog Is Added Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          // Navigate to homepage after the alert is shown
+          navigate("/");
+        });
         reset();
       })
       .catch((error) => {
@@ -91,3 +101,22 @@ function Addblog() {
 }
 
 export default Addblog;
+
+
+// Swal.fire({
+//   title: "Are you sure?",
+//   text: "You won't be able to revert this!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonColor: "#3085d6",
+//   cancelButtonColor: "#d33",
+//   confirmButtonText: "Yes, delete it!"
+// }).then((result) => {
+//   if (result.isConfirmed) {
+//     Swal.fire({
+//       title: "Deleted!",
+//       text: "Your file has been deleted.",
+//       icon: "success"
+//     });
+//   }
+// });

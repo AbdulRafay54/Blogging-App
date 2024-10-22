@@ -9,6 +9,7 @@ import Layout from "../Layout.jsx";
 import Allblog from "./components/Allblog.jsx";
 import Addblog from "./components/Addblog.jsx";
 import UserBlogs from "./components/userblogs.jsx";
+import YourBlogs from "./components/Yourblog.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,9 +25,13 @@ const router = createBrowserRouter([
         element: <Addblog />,
       },
       {
-        path: "userblogs/:userName",
-        element: <UserBlogs />, 
+        path: "yourblogs",
+        element: <YourBlogs />, 
     },
+    {
+      path: "userblogs/:userName",
+      element: <UserBlogs />, 
+  },
     ],
   },
   {

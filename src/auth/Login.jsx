@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../Firebase/firebasemethods";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -15,8 +16,23 @@ const Login = () => {
     console.log(data);
     try {
       await loginUser(data);
-      alert("Login successful!"); // User ko login hone par alert karein
-      navigate("/"); // Home page par redirect karein
+      Swal.fire({
+        title: "Login Successfully ✅",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });      navigate("/"); // Home page par redirect karein
     } catch (error) {
       console.error("Login error:", error.code, error.message);
       
@@ -25,8 +41,10 @@ const Login = () => {
       } else if (error.code === "auth/wrong-password") {
         alert("Incorrect password. Please try again.");
       } else {
-        alert("Account Not Found!");
-      }
+        Swal.fire({
+          icon: "error",
+          title: "Account Not Found!",
+        });      }
     }
   };
 

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signUpUser } from "../Firebase/firebasemethods";
 import { updateProfile } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Signup = () => {
   const {
@@ -27,8 +28,23 @@ const Signup = () => {
       await updateProfile(auth.currentUser, {
         displayName: name,
       });
-      alert("Signup successful!");
-      navigate("/login");
+      Swal.fire({
+        title: "Signup Successfully ✅",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });      navigate("/login");
     } catch (error) {
       console.error("Error during signup:", error);
 

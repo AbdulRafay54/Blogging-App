@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom"; 
 import { db } from "../Firebase/firebasemethods";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { BallTriangle } from "react-loader-spinner";
 
 function AllBlogs() {
@@ -21,7 +21,7 @@ function AllBlogs() {
       setBlogs(blogsData);
     } catch (error) {
       console.error("Error fetching blogs:", error);
-      alert("Error fetching blogs. Please try again."); // User feedback
+      alert("Error fetching blogs. Please try again."); 
     } finally {
       setLoading(false);
     }
@@ -30,6 +30,8 @@ function AllBlogs() {
   useEffect(() => {
     getAllBlogs();
   }, []);
+
+  
 
   return (
     <div className="min-h-screen bg-gray-900 p-8"> {/* Dark background to match navbar */}
@@ -54,15 +56,29 @@ function AllBlogs() {
                 <div
                   key={item.id}
                   className="bg-gray-800 shadow-lg rounded-lg p-6 transition-transform duration-500 ease-in-out transform hover:scale-105 flex flex-col justify-between"
-                  >
+                >
                   <div>
-                    <h2 className="text-2xl font-bold text-center text-teal-400 mb-2">{item.title}</h2> {/* Updated Title Color */}
+                    <h2 className="text-2xl font-bold text-center text-teal-400 mb-2">{item.title}</h2>
                     <p className="text-white font-semibold text-center mb-4">{item.description}</p>
-                    <p className="text-md text-center font-medium text-sky-400">By {item.userName}</p> {/* Updated User Name Color */}
+                    <p className="text-md text-center font-medium text-sky-400">By {item.userName}</p>
                   </div>
+                  {/* <div className="flex justify-between mt-4">
+                    <button
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                      onClick={() => deleteTodo(item.id)} // Pass blog id for deletion
+                    >
+                      Delete
+                    </button>
+                    <button
+                      className="bg-blue-500 text-white px-2 py-1 rounded"
+                      onClick={() => editTodo(item.id)} // Pass blog id for editing
+                    >
+                      Edit
+                    </button>
+                  </div> */}
                   <button
                     onClick={() => navigate(`/userblogs/${item.userName}`)} 
-                    className="mt-4 bg-gray-700 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-300 w-full" // Updated Button Color
+                    className="mt-4 bg-gray-700 text-white font-semibold py-2 px-4 rounded hover:bg-gray-600 transition duration-300 w-full"
                   >
                     See All From This User
                   </button>
