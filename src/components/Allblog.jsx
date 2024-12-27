@@ -34,7 +34,7 @@ function AllBlogs() {
   
 
   return (
-    <div className="min-h-screen bg-gray-900 p-8"> {/* Dark background to match navbar */}
+    <div className="min-h-screen bg-gray-900 p-8"> 
       {loading ? (
          <div className="flex justify-center items-center w-full h-full mt-72">
          <BallTriangle

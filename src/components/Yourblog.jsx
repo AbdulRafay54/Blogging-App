@@ -46,7 +46,7 @@ const YourBlogs = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await deleteDoc(doc(db, "Blogs", id)); //yahan se blog firstore se delete horha hau
+          await deleteDoc(doc(db, "Blogs", id)); 
           setBlogs(blogs.filter(blog => blog.id !== id));
 
           Swal.fire({
@@ -94,7 +94,7 @@ const YourBlogs = () => {
             autocapitalize: "off",
           },
           showCancelButton: true,
-          confirmButtonText: "Save",
+          confirmButtonText: "Update Blog",
           preConfirm: (updatedDescription) => {
             if (!updatedDescription) {
               return Swal.showValidationMessage("Please enter a valid description.");

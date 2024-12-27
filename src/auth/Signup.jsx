@@ -62,7 +62,7 @@ const Signup = () => {
         <h2 className="text-2xl font-bold text-center text-white">Sign Up</h2> 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
+            <label className="block text-sm font-medium text-white"> 
               Full Name
             </label>
             <input
@@ -78,7 +78,7 @@ const Signup = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
+            <label className="block text-sm font-medium text-white"> 
               Email
             </label>
             <input
@@ -94,7 +94,7 @@ const Signup = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
+            <label className="block text-sm font-medium text-white"> 
               Password
             </label>
             <input

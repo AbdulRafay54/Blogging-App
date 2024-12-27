@@ -32,7 +32,7 @@ const Login = () => {
             animate__faster
           `
         }
-      });      navigate("/"); // Home page par redirect karein
+      });      navigate("/"); 
     } catch (error) {
       console.error("Login error:", error.code, error.message);
       
@@ -54,7 +54,7 @@ const Login = () => {
         <h2 className="text-2xl font-bold text-center text-white">Login</h2> 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
+            <label className="block text-sm font-medium text-white">
               Email
             </label>
             <input
@@ -70,7 +70,7 @@ const Login = () => {
             )}
           </div>
           <div>
-            <label className="block text-sm font-medium text-white"> {/* Updated to text-white */}
+            <label className="block text-sm font-medium text-white"> 
               Password
             </label>
             <input
